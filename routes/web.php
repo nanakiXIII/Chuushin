@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+//Route::get('/', function () {
+   // return view('home');
+//});
 
 Auth::routes();
 
+Route::get('/', 'PostController@index')->name('home');
+Route::resource('users', 'UserController');
+Route::resource('roles', 'RoleController');
+Route::resource('permissions', 'PermissionController');
+Route::resource('posts', 'PostController');
 Route::get('/account', 'HomeController@account')->name('account');
