@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Forms\AuthForm;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Kris\LaravelFormBuilder\FormBuilder;
+
 
 class LoginController extends Controller
 {
@@ -35,5 +38,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
     }
+
 }

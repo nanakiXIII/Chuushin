@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/hover.css') }}">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body class="grey lighten-4">
     <main>

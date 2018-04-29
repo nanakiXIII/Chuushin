@@ -2,65 +2,55 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Logins') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
+    <div class="row">
+        <div class=" col offset-m3 s6">
+            <div class="card horizontal">
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="input-field col s12 row">
+                                <i class="material-icons prefix">mail</i>
+                                <input id="email" type="email" class="icon_prefix validate{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <label for="email" class="icon_prefix">Adresse E-mail</label>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                            <div class="input-field col s12 row">
+                                <i class="material-icons prefix">lock</i>
+                                <input id="password" type="password" class="icon_prefix validate{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <label for="password" class="icon_prefix">Mot de passe</label>
                                 @if ($errors->has('password'))
+                                    {{dd($errors->first('password'))}}
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                            <div class="row col m12">
+                                <label>
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}/>
+                                    <span> Se souvenir de moi ?</span>
+                                </label>
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                            <div class="row col m12">
+                                {!!  Captcha::display() !!}
+                            </div>
+                            <div class="row col m6 left-align">
+                                <button type="submit" class="waves-effect waves-light btn orange">
+                                    Connexion
                                 </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                            </div>
+                            <div class="row col m6 right-align">
+                                <a class="waves-effect waves-light btn orange" href="{{ route('password.request') }}">
+                                    Mot de passe Oublié ?
                                 </a>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
