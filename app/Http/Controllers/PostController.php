@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostCreatedEvent;
 use Illuminate\Http\Request;
 
 use App\Post;
@@ -23,6 +24,8 @@ class PostController extends Controller {
 
     public function index() {
         $posts = Post::orderby('id', 'desc')->paginate(5); //show only 5 items at a time in descending order
+        $event = new PostCreatedEvent();
+        event($event);
 
         return view('posts.index', compact('posts'));
     }

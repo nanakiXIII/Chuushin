@@ -54,7 +54,7 @@
                                         <i class="material-icons left">account_circle</i>{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i>
                                     </a>
                                     <ul id="dropdown2" class="dropdown-content">
-                                        <li><a href="#!">Mon Compte</a></li>
+                                        <li><a href="{{ route('users.account') }}">Mon Compte</a></li>
                                         <li><a href="#!">Mon Historique</a></li>
                                         <li>
                                             <a href="{{ route('logout') }}"  onclick="event.preventDefault();

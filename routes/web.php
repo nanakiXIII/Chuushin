@@ -19,7 +19,10 @@ Auth::routes();
 
 Route::get('/', 'PostController@index')->name('home');
 Route::resource('users', 'UserController');
+Route::get('/account', 'UserController@account')->name('users.account');
+Route::get('/account/avatar', 'UserController@profile')->name('users.avatar');
+Route::post('/account/avatar', 'UserController@update_avatar')->name('users.postAvatar');;
 Route::resource('roles', 'RoleController');
 Route::resource('permissions', 'PermissionController');
 Route::resource('posts', 'PostController');
-Route::get('/account', 'HomeController@account')->name('account');
+//Route::get('/account', 'HomeController@account')->name('account');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Forms\AuthForm;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
 
 use App\User;
@@ -17,7 +19,7 @@ use Session;
 class UserController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        $this->middleware(['auth', 'isAdmin'])->except('account', 'update_avatar');; //isAdmin middleware lets only users with a //specific permission permission to access these resources
     }
 
     /**
@@ -29,6 +31,40 @@ class UserController extends Controller {
         //Get all users and pass it to the view
         $users = User::all();
         return view('users.index')->with('users', $users);
+    }
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('users.profile',compact('user'));
+    }
+    public function account(){
+
+        $user = Auth::user();
+        return view('users.account', compact('user'));
+
+    }
+
+    public function update_avatar(Request $request){
+
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
+
+        $request->avatar->storeAs('avatars',$avatarName);
+
+        $user->avatar = $avatarName;
+
+        $user->save();
+
+        $img = Image::make('/storage/avatar/'.$avatarName)->resize(50,50)->insert('/storage/avatar/thumb_'.$avatarName);
+
+        return back()
+            ->with('success','You have successfully upload image.');
+
     }
 
     /**
