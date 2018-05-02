@@ -8,7 +8,12 @@
 
 - Redis
 - Php 7.2
+    -composer i
 - NodeJs
+    - npm install -g laravel-echo-server
+        - laravel-echo-server start
+    - npm install --save laravel-echo
+    - yarn
 - Mysql
 
 ## Commandes 
@@ -16,9 +21,12 @@
 - Php artisan migrate
 - Php artisan seed
 
+
 - Dev
     - Php artisan serve
+    - redis-server
     - redis-cli monitor
+    - npm run watch
    
 ## Fonctionnalités
 

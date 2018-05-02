@@ -24,8 +24,7 @@ class PostController extends Controller {
 
     public function index() {
         $posts = Post::orderby('id', 'desc')->paginate(5); //show only 5 items at a time in descending order
-        $event = new PostCreatedEvent();
-        event($event);
+
 
         return view('posts.index', compact('posts'));
     }
@@ -36,6 +35,8 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        $event = new PostCreatedEvent(['name' => 'titre']);
+        broadcast($event)->toOthers();
         return view('posts.create');
     }
 

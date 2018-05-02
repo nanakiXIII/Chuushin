@@ -15,6 +15,7 @@
                     </div>
                     <div class="col s10">
                       <span class="flow-text">
+                          <button id="demo">Notifier</button>
                           <b>{{ ucfirst($user->name)}}</b><br>
                           {{ $user->email }} <br>
                           {{ $user->roles()->pluck('name')->implode(' ') }}
