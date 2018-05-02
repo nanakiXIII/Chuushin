@@ -1,5 +1,5 @@
 <p align="center">
-    <img scr="https://www.chuushin-no-fansub.fr/public/img/site/banniere.jpg"/>
+    <img src="https://www.chuushin-no-fansub.fr/public/img/site/banniere.jpg"/>
 </p>
 
 ## Chuushin no Fansub
