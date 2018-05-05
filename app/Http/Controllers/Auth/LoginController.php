@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Forms\AuthForm;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Kris\LaravelFormBuilder\FormBuilder;
 
 
@@ -39,6 +40,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
 
+    }
+
+    public function spy (int $user_id){
+        Auth::loginUsingId($user_id);
+        return redirect()->back();
     }
 
 }

@@ -14,3 +14,19 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('group.{id}', function ($user, $id) {
+    if((int) $user->group_id === (int) $id){
+        return ['id' => $user->id, 'name' => $user->name];
+    }
+});
+Broadcast::channel('PresenceChannel', function ($user) {
+        if (Auth::check()){
+            return ['id' => $user->id, 'name' => $user->name];
+        }
+        else{
+            return['id' => null, 'name' => null];
+        }
+
+
+});

@@ -27,6 +27,7 @@
     - redis-server
     - redis-cli monitor
     - npm run watch
+    -laravel-echo-server start
    
 ## Fonctionnalités
 

@@ -20,8 +20,16 @@ Auth::routes();
 Route::get('/', 'PostController@index')->name('home');
 Route::resource('users', 'UserController');
 Route::get('/account', 'UserController@account')->name('users.account');
+
+Route::get('/groups', 'GroupController@index')->name('groups');
+Route::get('/spy/{id}', 'Auth\LoginController@spy')->name('spy');
+Route::post('/groups/{id}/notify', 'GroupController@notify')->name('notify');
+
+Route::get('/{type}/', 'serieController@index')->name('serie');
+Route::get('/{type}/{slug}', 'serieController@detail')->name('serie.detail');
+
 Route::get('/account/avatar', 'UserController@profile')->name('users.avatar');
-Route::post('/account/avatar', 'UserController@update_avatar')->name('users.postAvatar');;
+Route::post('/account/avatar', 'UserController@update_avatar')->name('users.postAvatar');
 Route::resource('roles', 'RoleController');
 Route::resource('permissions', 'PermissionController');
 Route::resource('posts', 'PostController');

@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/hover.css') }}">
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    @guest
+    @else
+            <meta name="user" content="{{Auth::user()->id}}">
+    @endguest
 </head>
 <body class="grey lighten-4">
     <main>
@@ -32,10 +36,10 @@
                     <div class="container">
                         <ul class="hide-on-med-and-down">
                             <li><a href="/"><i class="material-icons left">home</i>Accueil</a></li>
-                            <li><a href="" class="center"><i class="material-icons left">local_movies</i>Animés</a></li>
-                            <li><a href="" class="center"><i class="material-icons left">brush</i>Scantrad</a></li>
-                            <li><a href="" class="center"><i class="material-icons left">book</i>Light Novel</a></li>
-                            <li><a href="" class="center"><i class="material-icons left">videogame_asset</i>Visual Novel</a></li>
+                            <li><a href="{{ route('serie', 'Animes') }}" class="center"><i class="material-icons left">local_movies</i>Animés</a></li>
+                            <li><a href="{{ route('serie', 'Scan') }}" class="center"><i class="material-icons left">brush</i>Scantrad</a></li>
+                            <li><a href="{{ route('serie', 'Light-Novel') }}" class="center"><i class="material-icons left">book</i>Light Novel</a></li>
+                            <li><a href="{{ route('serie', 'Visual-Novel') }}" class="center"><i class="material-icons left">videogame_asset</i>Visual Novel</a></li>
                             <li><a href="" class="center"><i class="material-icons left">contact_mail</i> Nous Contacter</a></li>
                             @guest
                                 <li>
@@ -87,6 +91,9 @@
             </div>
 
             @yield('content')
+            <div class="card test">
+                Utilisateur en ligne
+            </div>
         </div>
     </main>
     <footer class="page-footer grey darken-4">
