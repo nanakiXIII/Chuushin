@@ -6,7 +6,7 @@
             <div class="col s12 l12">
                 @foreach($series as $serie)
                 <div class="col s12 l4">
-                    <div class="card">
+                    <div class="card hoverable">
                         <div class="card-image waves-effect waves-block waves-light">
                             <a href="{{ route('serie.detail', [$type, $serie->slug]) }}">
                                 <img class="activator relative" src="/storage/serie/{{ $serie->image}}">
@@ -32,9 +32,6 @@
                         <div class="card-content">
                             <span class="card-title grey-text text-darken-4 center">
                                 <strong>{{ ucfirst($serie->titre) }} </strong>
-                                @foreach( $serie->genres as $genre)
-                                    {{ $genre->name }}
-                                @endforeach
                             </span>
                         </div>
                     </div>
