@@ -8,6 +8,7 @@ use App\Jobs\ProcessImage;
 use App\serie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 
 class SerieController extends Controller
@@ -39,7 +40,7 @@ class SerieController extends Controller
     }
     public function insert(string $type,Request $request) {
 
-        $imageName = 'Serie-'.str_slug($request->titre,'-').'.'.$request->image->getClientOriginalExtension();
+        $imageName = 'serie-'.str_slug($request->titre,'-').time().'.'.$request->image->getClientOriginalExtension();
         $request->image->storeAs('serie',$imageName);
 
         if ($type == "Animes"){
@@ -72,29 +73,29 @@ class SerieController extends Controller
         else{
             $vn = 0;
         }
-        //$serie = serie::create([
-        //    'titre' => $request->titre,
-        //    'titre_original' => $request->titre_original,
-        //    'titre_alternatif' => $request->titre_alternatif,
-        //    'annee' => $request->annee,
-        //    'studio' => $request->studio,
-        //    'auteur' => $request->auteur,
-        //    'episode' => $episode,
-        //    'oav' => $oav,
-        //    'films' => $film,
-        //    'bonus' => $bonus,
-        //    'scan' => $scan,
-        //    'light-novel' => $ln,
-        //    'visual_novel' => $vn,
-        //    'synopsis' => $request->synopsis,
-        //    'staff' => $request->staff,
-        //    'type' => $type,
-        //    'slug' => str_slug($request->titre,'-'),
-        //    'image' => $imageName
-        //]);
+        $serie = serie::create([
+            'titre' => $request->titre,
+            'titre_original' => $request->titre_original,
+            'titre_alternatif' => $request->titre_alternatif,
+            'annee' => $request->annee,
+            'studio' => $request->studio,
+            'auteur' => $request->auteur,
+            'episode' => $episode,
+            'oav' => $oav,
+            'films' => $film,
+            'bonus' => $bonus,
+            'scan' => $scan,
+            'light-novel' => $ln,
+            'visual_novel' => $vn,
+            'synopsis' => $request->synopsis,
+            'staff' => $request->staff,
+            'type' => $type,
+            'slug' => str_slug($request->titre,'-'),
+            'image' => $imageName
+        ]);
 
-        ProcessImage::dispatch("serie/$imageName", 'thumb', '340', '120', $imageName);
-
+        ProcessImage::dispatch("serie/$imageName", 'medium', '340', '120');
+        ProcessImage::dispatch("serie/$imageName", 'large', '420', '236');
     }
 
 

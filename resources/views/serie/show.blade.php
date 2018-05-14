@@ -9,7 +9,7 @@
                     <div class="card hoverable">
                         <div class="card-image waves-effect waves-block waves-light">
                             <a href="{{ route('serie.detail', [$type, $serie->slug]) }}">
-                                <img class="activator relative" src="/storage/serie/{{ $serie->image}}">
+                                <img class="activator relative" src="/storage/serie/medium_{{ $serie->image}}">
                                 @if($serie->etat == 0)
                                     <span class="titre-projets activator blue">
                                         En cours

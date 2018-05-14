@@ -8,7 +8,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Image;
+use Intervention\Image\ImageManager;
 
 class ProcessImage implements ShouldQueue
 {
@@ -29,6 +30,7 @@ class ProcessImage implements ShouldQueue
      * @var int|null
      */
     private $height;
+
 
 
     /**
@@ -55,26 +57,19 @@ class ProcessImage implements ShouldQueue
      */
     public function handle()
     {
-
-        //$this->imagePath = "H:\Chuushin\storage\app\public\serie\1.png";
-        Storage::move($this->imagePath, 'new/file.jpg');
-        $files = Storage::url($this->imagePath);
-        $filename = pathinfo($this->imagePath, PATHINFO_BASENAME);
-        $files->move('avatar', $filename);
+        $file = Storage::get($this->imagePath);
         $extension = pathinfo($this->imagePath, PATHINFO_EXTENSION);
         $basename = pathinfo($this->imagePath, PATHINFO_BASENAME);
-        echo Storage::size($this->imagePath);
-        //$manager = new ImageManager();
-        $img = Image::make($this->imagePath);
-        $img = Image::make($this->imagePath);
-//
-        //if ($this->height){
-        //   $img = $img->fit($this->width, $this->height);
-        //}else{
-        //    $img->resize($this->width,null);
-        //};
-        ////$img->insert('/storage/serie/'.$this->suffix.'_'.$this->imagePath);
-        //$img->save('serie/' . $this->suffix.'_'.$basename);
+        $manager = new ImageManager(['driver' => 'gd']);
+        $img = $manager->make($file);
+        if ($this->height){
+            $img->fit($this->width, $this->height);
+        }else{
+          $img->resize($this->width,null);
+        };
+
+
+        $img->save(storage_path('app/public/serie/'.$this->suffix.'_'.$basename));
 
     }
 }

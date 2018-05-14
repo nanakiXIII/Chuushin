@@ -8,7 +8,7 @@
 
 - Redis
 - Php 7.2
-    -composer i
+    - composer i
 - NodeJs
     - npm install -g laravel-echo-server
         - laravel-echo-server start
@@ -27,7 +27,8 @@
     - redis-server
     - redis-cli monitor
     - npm run watch
-    -laravel-echo-server start
+    - laravel-echo-server start
+    - php artisan horizon
    
 ## Fonctionnalités
 
@@ -37,3 +38,13 @@
         - Changer d'avatar
         - Changer de mot de passe
         - Permissions
+
+- Série
+    - Animes
+    - Scantrad
+    - Light Novel
+    - Visual Novel
+
+- Administration
+    - Ajout des série
+        - redimension des images

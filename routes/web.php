@@ -25,18 +25,18 @@ Route::get('/groups', 'GroupController@index')->name('groups');
 Route::get('/spy/{id}', 'Auth\LoginController@spy')->name('spy');
 Route::post('/groups/{id}/notify', 'GroupController@notify')->name('notify');
 
-Route::get('/projets/{type}/', 'serieController@index')->name('serie');
-Route::get('/projets/{type}/{slug}', 'serieController@detail')->name('serie.detail');
+Route::get('/projets/{type}/', 'SerieController@index')->name('serie');
+Route::get('/projets/{type}/{slug}', 'SerieController@detail')->name('serie.detail');
 
 Route::group(['prefix' => 'admin'], function (){
     Route::group(['prefix' =>'projets'], function (){
-        Route::get('{type}/', 'serieController@list')->name('admin.serie.list');
-        Route::get('{type}/{slug}/', 'serieController@adminDetail')->name('admin.serie.detail');
-        Route::get('nouveau', 'serieController@create')->name('admin.serie.new');
+        Route::get('{type}/', 'SerieController@list')->name('admin.serie.list');
+        Route::get('{type}/{slug}/', 'SerieController@adminDetail')->name('admin.serie.detail');
+        Route::get('nouveau', 'SerieController@create')->name('admin.serie.new');
     });
     Route::group(['prefix' =>'nouveau'], function (){
-        Route::get('serie/{type}', 'serieController@create')->name('admin.serie.new');
-        Route::post('serie/{type}', 'serieController@insert')->name('admin.serie.create');
+        Route::get('serie/{type}', 'SerieController@create')->name('admin.serie.new');
+        Route::post('serie/{type}', 'SerieController@insert')->name('admin.serie.create');
     });
 
 });
