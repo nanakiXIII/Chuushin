@@ -30,24 +30,29 @@ class ProcessImage implements ShouldQueue
      * @var int|null
      */
     private $height;
-
+    /**
+     * @var string
+     */
+    private $type;
 
 
     /**
      * Create a new job instance.
      *
-     * @param  $imagePath
+     * @param string $imagePath
      * @param string $suffix
      * @param int $width
      * @param int|null $height
+     * @param string $type
      */
-    public function __construct( string $imagePath, string $suffix, int $width, ?int $height = null)
+    public function __construct( string $imagePath, string $suffix, int $width, ?int $height = null, string $type)
     {
         //
         $this->imagePath = $imagePath;
         $this->suffix = $suffix;
         $this->width = $width;
         $this->height = $height;
+        $this->type = $type;
     }
 
     /**
@@ -69,7 +74,7 @@ class ProcessImage implements ShouldQueue
         };
 
 
-        $img->save(storage_path('app/public/serie/'.$this->suffix.'_'.$basename));
+        $img->save(storage_path('app/public/serie/'.$this->type.'/'.$this->suffix.'_'.$basename));
 
     }
 }

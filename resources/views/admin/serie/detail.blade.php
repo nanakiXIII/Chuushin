@@ -20,7 +20,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="{{ route('admin.serie.edit', [$type, $serie->slug]) }}">
                                         <i class="material-icons">update</i> Modifier
                                     </a>
                                 </li>
@@ -36,8 +36,8 @@
                 <div class="body">
                     <div class="row">
                         <div class="col-lg-4 align-center">
-                            <img src="/storage/serie/{{ $serie->image }}" alt="" width="100%">
-                            <span><b>Episodes:</b> 0 | <b>Oavs:</b> 0 | <b>Films:</b> 0 | <b>Bonus:</b> 0</span>
+                            <img src="/storage/serie/{{ $type }}/large_{{ $serie->image }}" alt="" width="100%">
+                            <span><b>Episodes:</b> {{ $serie->episode }} | <b>Oavs:</b> {{ $serie->oav }} | <b>Films:</b> {{ $serie->films }} | <b>Bonus:</b> {{ $serie->bonus }}</span>
                         </div>
                         <div class="col-lg-8">
                             <ul class="list-group">

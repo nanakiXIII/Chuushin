@@ -1,6 +1,15 @@
 @extends('admin.layouts.admin')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -12,7 +21,6 @@
                 <div class="body">
                     <div class="row">
                         {!!Form::open(['url' => route('admin.serie.create', $type), 'method' => 'post', 'files'=> 'true'])!!}
-                            {!! Form::token() !!}
                             <div class="col-md-6">
                                 <div class="form-group form-float">
                                     <div class="form-line">
@@ -66,7 +74,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            {{ Form::number('episode',null,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::number('episode',0,['class' => 'form-control', 'min' => '0']) }}
                                             {{ Form::label('episode', "Nombre d'épisode", ['class' => 'form-label']) }}
                                         </div>
                                     </div>
@@ -74,7 +82,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            {{ Form::number('oav',null,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::number('oav',0,['class' => 'form-control', 'min' => '0']) }}
                                             {{ Form::label('oav', "Nombre d'oav", ['class' => 'form-label']) }}
                                         </div>
                                     </div>
@@ -82,7 +90,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            {{ Form::number('films',null,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::number('films',0,['class' => 'form-control', 'min' => '0']) }}
                                             {{ Form::label('films', 'Nombre de film', ['class' => 'form-label']) }}
                                         </div>
                                     </div>
@@ -90,7 +98,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            {{ Form::number('bonus',null,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::number('bonus',0,['class' => 'form-control', 'min' => '0']) }}
                                             {{ Form::label('bonus', 'Nombre de bonus', ['class' => 'form-label']) }}
                                         </div>
                                     </div>
@@ -99,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        {{ Form::select('genres[]',$genre,null,['multiple' => 'multiple', 'class' => 'form-control show-tick']) }}
+                                        {{ Form::select('genres_list[]',$genre,null,['multiple' => 'multiple', 'class' => 'form-control show-tick']) }}
                                     </div>
                                 </div>
                             </div>
@@ -127,6 +135,7 @@
                                     </div>
                                 </div>
                             </div>
+                        {{ Form::hidden('slug',null) }}
                             {!! Form::submit('Envoyer',['class' => 'btn btn-block btn-lg btn-success waves-effect']); !!}
                         {!! Form::close() !!}
                     </div>

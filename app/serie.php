@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class serie extends Model
 {
@@ -12,14 +13,29 @@ class serie extends Model
         return $this->belongsToMany('App\genre');
     }
 
+    public function setSlugAttribute($value){
+
+        if (empty($value)){
+            $this->attributes['slug'] = Str::slug($this->titre);
+        }
+    }
+    public function setImageAttribute($value){
+
+        $this->attributes['image'] = $this->slug.'.'.$value->getClientOriginalExtension();
+    }
+    //public function setGenresListAttribute($value){
+    //    return $this->genres()->sync($value);
+    //}
+
+
     public function getGenresListAttribute(){
+        dd($this);
         if ($this->id){
-            return $this->genres->lists('id');
+            return $this->genres->pluck('id')->toArray();
         }
     }
-    public function getGenresListName(){
-        if ($this->id){
-            return $this->genres->lists('name');
-        }
-    }
+
+
+
+
 }

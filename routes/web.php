@@ -32,11 +32,14 @@ Route::group(['prefix' => 'admin'], function (){
     Route::group(['prefix' =>'projets'], function (){
         Route::get('{type}/', 'SerieController@list')->name('admin.serie.list');
         Route::get('{type}/{slug}/', 'SerieController@adminDetail')->name('admin.serie.detail');
-        Route::get('nouveau', 'SerieController@create')->name('admin.serie.new');
     });
     Route::group(['prefix' =>'nouveau'], function (){
         Route::get('serie/{type}', 'SerieController@create')->name('admin.serie.new');
         Route::post('serie/{type}', 'SerieController@insert')->name('admin.serie.create');
+    });
+    Route::group(['prefix' =>'update'], function (){
+        Route::get('serie/{type}/{slug}', 'SerieController@edit')->name('admin.serie.edit');
+        //Route::post('serie/{type}', 'SerieController@insert')->name('admin.serie.create');
     });
 
 });
