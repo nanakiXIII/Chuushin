@@ -15,10 +15,13 @@ class TypeMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $url = ["Animes", "Scan", "Visual-novel", 'Light-novel'];
-        if (!in_array($request->type, $url)){
-            abort(404);
-        }
+       if ($request->type){
+           $url = ["Animes", "Scan", "Visual-novel", 'Light-novel'];
+           if (!in_array($request->type, $url)){
+               abort(404);
+           }
+       }
+
         return $next($request);
     }
 }

@@ -54,12 +54,13 @@
         - Light novel (95%) nombre de chapitres
         - Visual novel (95%) nombre de visual novel
     - Modification des séries
-    - Mise en ligne des série (0%)
-    - Etat des séries (0%)
-    - Suppression des séries (0%)
+    - Mise en ligne des série
+    - Etat des séries
+    - Suppression des séries
     - Sécurité
         - Création des grades (0%)
         - Mise en places des grades (0%)
     - Websocket
-        - Avertir nouvelle série publié
-        - Changement d'état de la série
+        - Suppression des séries (0%)
+        - Avertir nouvelle série publié (0%)
+        - Changement d'état de la série (0%)

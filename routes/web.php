@@ -41,7 +41,13 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('serie/{type}/{slug}', 'SerieController@edit')->name('admin.serie.edit');
         Route::put('serie/{type}/{slug}', 'SerieController@update')->name('admin.serie.update');
     });
-
+    Route::group(['prefix' =>'publication'], function (){
+        Route::get('serie/{id}/{value}', 'SerieController@pub')->name('admin.serie.pub');
+        Route::put('serie/{id}','SerieController@etat')->name('admin.serie.etat');
+    });
+    Route::group(['prefix' =>'delete'], function (){
+        Route::delete('serie/{type}/{id}/', 'SerieController@destroy')->name('admin.serie.delete');
+    });
 });
 
 Route::get('/account/avatar', 'UserController@profile')->name('users.avatar');

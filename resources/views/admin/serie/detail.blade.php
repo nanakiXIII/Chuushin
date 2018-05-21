@@ -24,8 +24,35 @@
                                         <i class="material-icons">update</i> Modifier
                                     </a>
                                 </li>
+                                @if($serie->publication == 0)
+                                    <li>
+                                        <a href="{{ route('admin.serie.pub', [$serie, true]) }}">
+                                            <i class="material-icons">visibility_off</i> Hors Ligne
+                                        </a>
+                                    </li>
+                                    @else
+                                    <li>
+                                        <a href="{{ route('admin.serie.pub', [$serie, 0]) }}">
+                                            <i class="material-icons">visibility</i> En Ligne
+                                        </a>
+                                    </li>
+                                @endif
                                 <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modalEtat">
+                                        <i class="material-icons">build</i>
+                                        @if($serie->etat == 0)
+                                            En cours
+                                        @elseif($serie->etat == 1)
+                                            Terminé
+                                        @elseif($serie->etat == 2)
+                                            Abandonné
+                                        @elseif($serie->etat == 3)
+                                            Licencié
+                                        @endif
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDelete">
                                         <i class="material-icons">delete</i> Supprimer
                                     </a>
                                 </li>
@@ -56,6 +83,73 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="card">
+                <div class="header">
+                    <h2> Synopsis </h2>
+                </div>
+                <div class="body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {{ $serie->synopsis }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="header">
+                    <h2> Staff </h2>
+                </div>
+                <div class="body">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            {{ $serie->staff }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalEtat" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">{{$serie->titre_original}}</h4>
+                </div>
+                <div class="modal-body">
+                    {!!Form::open(['url' => route('admin.serie.etat', [$serie]), 'method' => 'put', 'files'=> 'true'])!!}
+                        <div class="col-md-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    {{ Form::select('etat',['En cours', 'Terminé', 'Abandonné', 'Licencié'],$serie->etat,['class' => 'form-control show-tick']) }}
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    {!! Form::submit('Envoyer',['class' => 'btn btn-link  waves-effect']); !!}
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Fermer</button>
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">{{$serie->titre_original}}</h4>
+                </div>
+                <div class="modal-body align-center">
+                    Etes vous sur de vouloir supprimer <b>{{ $serie->titre_original }}</b>
+                </div>
+                <div class="modal-footer">
+                    {!!Form::open(['url' => route('admin.serie.delete', [ $type, $serie]), 'method' => 'delete'])!!}
+                        {!! Form::submit('Oui',['class' => 'btn btn-link  waves-effect']); !!}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Non</button>
+                    {!! Form::close() !!}
+                </div>
+
             </div>
         </div>
     </div>

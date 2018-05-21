@@ -13,7 +13,7 @@ class SerieController extends Controller
 {
     public function __construct() {
 
-        $this->middleware(['auth', 'clearance'])->except('index', 'detail');
+        $this->middleware(['auth', 'clearance'])->except('index', 'detail', 'delete');
         $this->middleware(['type']);
 
     }
@@ -66,6 +66,22 @@ class SerieController extends Controller
         $serie->genres()->sync($request->genres_list);
         return redirect()->route('admin.serie.detail', [$serie->type,$request->slug]);
     }
+    public function pub($id, bool $value) {
+        $serie = serie::findorfail($id);
+        if (in_array($value, [0,1])){
+            $serie->publication = $value;
+            $serie->save();
+        }
+        return redirect()->back();
+    }
+    public function etat($id, Request $request) {
+        $serie = serie::findorfail($id);
+        if (in_array($request->etat, [0,1,2,3])){
+            $serie->etat = $request->etat;
+            $serie->save();
+        }
+        return redirect()->back();
+    }
     public function insert(string $type,Request $request) {
         $request->validate([
             'titre' =>'required|max:30',
@@ -85,5 +101,10 @@ class SerieController extends Controller
         ProcessImage::dispatch("serie/$type/$imageName", 'medium', '340', '120', $type);
         ProcessImage::dispatch("serie/$type/$imageName", 'large', '420', '236', $type);
         return redirect()->route('admin.serie.detail', [$type,$slug]);
+    }
+    public function destroy( string $type, $id) {
+        $serie = serie::findorfail($id);
+        $serie->delete();
+        return redirect()->route('admin.serie.list',[$type]);
     }
 }
