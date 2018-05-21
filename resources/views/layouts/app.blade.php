@@ -39,8 +39,8 @@
                             <li><a href="/"><i class="material-icons left">home</i>Accueil</a></li>
                             <li><a href="{{ route('serie', 'Animes') }}" class="center"><i class="material-icons left">local_movies</i>Animés</a></li>
                             <li><a href="{{ route('serie', 'Scan') }}" class="center"><i class="material-icons left">brush</i>Scantrad</a></li>
-                            <li><a href="{{ route('serie', 'Light-Novel') }}" class="center"><i class="material-icons left">book</i>Light Novel</a></li>
-                            <li><a href="{{ route('serie', 'Visual-Novel') }}" class="center"><i class="material-icons left">videogame_asset</i>Visual Novel</a></li>
+                            <li><a href="{{ route('serie', 'Light-novel') }}" class="center"><i class="material-icons left">book</i>Light Novel</a></li>
+                            <li><a href="{{ route('serie', 'Visual-novel') }}" class="center"><i class="material-icons left">videogame_asset</i>Visual Novel</a></li>
                             <li><a href="" class="center"><i class="material-icons left">contact_mail</i> Nous Contacter</a></li>
                             @guest
                                 <li>

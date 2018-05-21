@@ -20,11 +20,11 @@
                 </div>
                 <div class="body">
                     <div class="row">
-                        {!!Form::open(['url' => route('admin.serie.create', $serie), 'method' => 'post', 'files'=> 'true'])!!}
+                        {!!Form::open(['url' => route('admin.serie.update', [$serie->type, $serie->slug]), 'method' => 'put', 'files'=> 'true'])!!}
                         <div class="col-md-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    {{ Form::hidden('slug',null) }}
+                                    {{ Form::hidden('slug',$serie->slug) }}
                                     {{ Form::text('titre',$serie->titre,['class' => 'form-control', 'maxlength' => '23']) }}
                                     {{ Form::label('titre', 'Titre de la vignette', ['class' => 'form-label']) }}
                                     <div class="help-info"> Max 23 caractères</div>

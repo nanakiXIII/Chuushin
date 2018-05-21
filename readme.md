@@ -32,19 +32,34 @@
    
 ## Fonctionnalités
 
-- Authentifications
+## Authentifications
     - Login
     - Register
         - Changer d'avatar
         - Changer de mot de passe
         - Permissions
 
-- Série
+## Série
     - Animes
     - Scantrad
     - Light Novel
     - Visual Novel
 
-- Administration
+## Administration
+    
     - Ajout des série
-        - redimension des images
+        - Redimension des images
+        - Animes (100%)
+        - Scantrad (95%) nombre de chapitres
+        - Light novel (95%) nombre de chapitres
+        - Visual novel (95%) nombre de visual novel
+    - Modification des séries
+    - Mise en ligne des série (0%)
+    - Etat des séries (0%)
+    - Suppression des séries (0%)
+    - Sécurité
+        - Création des grades (0%)
+        - Mise en places des grades (0%)
+    - Websocket
+        - Avertir nouvelle série publié
+        - Changement d'état de la série

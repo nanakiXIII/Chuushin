@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin'], function (){
     });
     Route::group(['prefix' =>'update'], function (){
         Route::get('serie/{type}/{slug}', 'SerieController@edit')->name('admin.serie.edit');
-        //Route::post('serie/{type}', 'SerieController@insert')->name('admin.serie.create');
+        Route::put('serie/{type}/{slug}', 'SerieController@update')->name('admin.serie.update');
     });
 
 });

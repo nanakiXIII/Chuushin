@@ -135,7 +135,8 @@
                                     </div>
                                 </div>
                             </div>
-                        {{ Form::hidden('slug',null) }}
+                            {{ Form::hidden('slug',null) }}
+                            {{ Form::hidden('type',$type) }}
                             {!! Form::submit('Envoyer',['class' => 'btn btn-block btn-lg btn-success waves-effect']); !!}
                         {!! Form::close() !!}
                     </div>

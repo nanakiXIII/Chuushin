@@ -44,6 +44,28 @@ class SerieController extends Controller
         $genre = genre::pluck('name', 'id')->toArray();
         return view('admin.serie.edit', compact('type', 'genre', 'serie'));
     }
+    public function update(string $type, string $slug, Request $request) {
+        $serie = serie::where('type', $type)->where('slug', $slug)->firstOrFail();
+        $request->validate([
+            'titre' =>'required|max:30',
+            'titre_original' =>'required',
+            'studio' =>'required',
+            'auteur' =>'required',
+            'annee' =>'required|min:4|max:4',
+            'synopsis' =>'required',
+        ]);
+
+        $slug = $request->slug;
+        if ($request->image){
+            $imageName = $slug.'.'.$request->image->getClientOriginalExtension();
+            $request->image->storeAs('serie/'.$type,$imageName);
+            ProcessImage::dispatch("serie/$type/$imageName", 'medium', '340', '120', $type);
+            ProcessImage::dispatch("serie/$type/$imageName", 'large', '420', '236', $type);
+        }
+        $serie->update($request->all());
+        $serie->genres()->sync($request->genres_list);
+        return redirect()->route('admin.serie.detail', [$serie->type,$request->slug]);
+    }
     public function insert(string $type,Request $request) {
         $request->validate([
             'titre' =>'required|max:30',
