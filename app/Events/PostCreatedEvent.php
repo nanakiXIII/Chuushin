@@ -20,7 +20,7 @@ class PostCreatedEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(array $post)
+    public function __construct($post)
     {
         $this->post = $post;
     }

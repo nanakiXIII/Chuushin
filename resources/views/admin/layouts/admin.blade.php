@@ -425,6 +425,20 @@
 
 <section class="content">
     <div class="container-fluid">
+        @if(Session::has('flash_message'))
+            <div class="alert alert-success">
+                <em> {!! session('flash_message') !!}</em>
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @yield('content')
     </div>
 </section>
@@ -478,6 +492,8 @@
 
 <!-- Demo Js -->
 <script src="{{ asset('admin/js/demo.js') }}"></script>
+<script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+<script src="{{ asset('js/socket.js') }}"></script>
 </body>
 
 </html>

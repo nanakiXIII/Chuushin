@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 
 class serie extends Model
 {
+    use Notifiable;
+
     protected $fillable = ['titre', 'titre_original', 'titre_alternatif', 'annee', 'studio', 'auteur', 'episode', 'oav', 'films', 'bonus', 'scan', 'light-novel', 'visual-novel', 'synopsis', 'staff', 'type', 'publication', 'slug', 'image'];
 
     public function genres(){

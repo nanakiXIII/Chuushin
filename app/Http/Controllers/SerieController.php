@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Events\PostCreatedEvent;
 use App\genre;
 use App\Jobs\ProcessImage;
+use App\Notifications\SerieNotification;
 use App\serie;
 use Illuminate\Http\Request;
 
@@ -33,6 +35,8 @@ class SerieController extends Controller
     }
     public function adminDetail(string $type, string $slug) {
         $serie = serie::where('type', $type)->where('slug', $slug)->firstOrFail();
+        $event = new PostCreatedEvent($serie);
+        broadcast($event)->toOthers();
         return view('admin.serie.detail', compact('serie', 'type'));
     }
     public function create(string $type) {
@@ -100,7 +104,11 @@ class SerieController extends Controller
         $serie->genres()->sync($request->genres_list);
         ProcessImage::dispatch("serie/$type/$imageName", 'medium', '340', '120', $type);
         ProcessImage::dispatch("serie/$type/$imageName", 'large', '420', '236', $type);
-        return redirect()->route('admin.serie.detail', [$type,$slug]);
+
+        $serie->notify(new SerieNotification($serie));
+        return redirect()->route('admin.serie.detail', [$type,$slug])
+            ->with('flash_message','Nouvelle série crée');
+
     }
     public function destroy( string $type, $id) {
         $serie = serie::findorfail($id);

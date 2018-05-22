@@ -49,10 +49,10 @@
     
     - Ajout des série
         - Redimension des images
-        - Animes (100%)
-        - Scantrad (95%) nombre de chapitres
-        - Light novel (95%) nombre de chapitres
-        - Visual novel (95%) nombre de visual novel
+        - Animes 
+        - Scantrad  
+        - Light novel 
+        - Visual novel
     - Modification des séries
     - Mise en ligne des série
     - Etat des séries

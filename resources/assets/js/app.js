@@ -52,14 +52,14 @@ e.channel('channel-demo')
     .listen('PostCreatedEvent', (e) => {
         console.log('Post', e);
 })
-   console.log(document.head.querySelector('meta[name="user"]').content);
+   //console.log(document.head.querySelector('meta[name="user"]').content);
 
 
 
-e.join('group.1')
-    .listen('GroupWizzEvent', function (e){
-        console.log('GroupWizzEvent', e)
-})
+//e.join('group.1')
+//    .listen('GroupWizzEvent', function (e){
+//        console.log('GroupWizzEvent', e)
+//})
 
 e.join('PresenceChannel')
     .here(function (users){

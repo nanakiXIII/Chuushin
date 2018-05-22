@@ -1,15 +1,6 @@
 @extends('admin.layouts.admin')
 
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -100,6 +91,49 @@
                                         <div class="form-line">
                                             {{ Form::number('bonus',0,['class' => 'form-control', 'min' => '0']) }}
                                             {{ Form::label('bonus', 'Nombre de bonus', ['class' => 'form-label']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif($type == "Scan")
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            {{ Form::number('scan',0,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::label('scan', 'Nombre de chapitre', ['class' => 'form-label']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            {{ Form::number('bonus',0,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::label('bonus', 'Nombre de tome', ['class' => 'form-label']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif($type == "Light-novel")
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            {{ Form::number('light-novel',0,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::label('light-novel', 'Nombre de chapitre', ['class' => 'form-label']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            {{ Form::number('bonus',0,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::label('bonus', 'Nombre de tome', ['class' => 'form-label']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif($type == "Visual-novel")
+                                <div class="col-md-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            {{ Form::number('Visual-novel',0,['class' => 'form-control', 'min' => '0']) }}
+                                            {{ Form::label('Visual-novel', 'Nombre de jeux', ['class' => 'form-label']) }}
                                         </div>
                                     </div>
                                 </div>

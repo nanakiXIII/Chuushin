@@ -20,6 +20,8 @@ Broadcast::channel('group.{id}', function ($user, $id) {
         return ['id' => $user->id, 'name' => $user->name];
     }
 });
+
+
 Broadcast::channel('PresenceChannel', function ($user) {
         if (Auth::check()){
             return ['id' => $user->id, 'name' => $user->name];
