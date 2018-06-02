@@ -66,7 +66,7 @@
         - Avertir nouvelle série publié (0%)
         - Changement d'état de la série (0%)
 
-##Utilisateur
+## Utilisateurs
     - Gestion des grades 
     - Gestion des permissions
     - Gérer les utisateurs (50%) 
