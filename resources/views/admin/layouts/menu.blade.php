@@ -29,13 +29,13 @@
             <li>
                 <a href="index.html">
                     <i class="material-icons">home</i>
-                    <span>Home</span>
+                    <span>Accueil</span>
                 </a>
             </li>
             <li class="{{ active(['admin.serie.list',"admin.serie.detail", "admin.serie.new" ,"admin.serie.edit"]) }}">
                 <a href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">swap_calls</i>
-                    <span>Séries</span>
+                    <i class="material-icons">folder</i>
+                    <span>Fiches</span>
                 </a>
                 <ul class="ml-menu">
                     <li class="{{ active(['admin.serie.list',"admin.serie.detail","admin/nouveau/serie/Animes","admin/update/serie/Animes/*","not:admin/projets/Scan","not:admin/projets/Light-novel", "not:admin/projets/Visual-novel","not:admin/projets/Scan/*","not:admin/projets/Light-novel/*", "not:admin/projets/Visual-novel/*"]) }}">
@@ -49,6 +49,23 @@
                     </li>
                     <li class="{{ active(['admin.serie.list',"admin.serie.detail","not:admin/projets/Scan","admin/update/serie/Visual-novel/*","admin/nouveau/serie/Visual-novel","not:admin/projets/Light-novel", "not:admin/projets/Animes","not:admin/projets/Scan/*","not:admin/projets/Light-novel/*", "not:admin/projets/Animes/*"]) }}">
                         <a href="{{Route('admin.serie.list', ['Visual-novel'])}}">Visual Novel</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{{ active(['roles.index', 'roles.create', 'roles.edit', 'permissions.index', 'permissions.create', 'permissions.edit']) }}">
+                <a href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">supervisor_account</i>
+                    <span>Permissions</span>
+                </a>
+                <ul class="ml-menu">
+                    <li class="{{ active(['roles.index', 'roles.create', 'roles.edit']) }}">
+                        <a href="{{Route('roles.index')}}">Gestions des grades</a>
+                    </li>
+                    <li class="{{ active(['permissions.index', 'permissions.create', 'permissions.edit']) }}">
+                        <a href="{{Route('permissions.index')}}">Gestion des rôles</a>
+                    </li>
+                    <li class="{{ active(['']) }}">
+                        <a href="{{Route('permissions.index')}}">Gestion des utilisateurs</a>
                     </li>
                 </ul>
             </li>

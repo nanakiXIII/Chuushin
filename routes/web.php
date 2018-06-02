@@ -29,6 +29,8 @@ Route::get('/projets/{type}/', 'SerieController@index')->name('serie');
 Route::get('/projets/{type}/{slug}', 'SerieController@detail')->name('serie.detail');
 
 Route::group(['prefix' => 'admin'], function (){
+    Route::resource('roles', 'RoleController');
+    Route::resource('permissions', 'PermissionController');
     Route::group(['prefix' =>'projets'], function (){
         Route::get('{type}/', 'SerieController@list')->name('admin.serie.list');
         Route::get('{type}/{slug}/', 'SerieController@adminDetail')->name('admin.serie.detail');
@@ -52,7 +54,5 @@ Route::group(['prefix' => 'admin'], function (){
 
 Route::get('/account/avatar', 'UserController@profile')->name('users.avatar');
 Route::post('/account/avatar', 'UserController@update_avatar')->name('users.postAvatar');
-Route::resource('roles', 'RoleController');
-Route::resource('permissions', 'PermissionController');
 Route::resource('posts', 'PostController');
 //Route::get('/account', 'HomeController@account')->name('account');

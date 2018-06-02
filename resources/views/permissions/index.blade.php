@@ -1,44 +1,79 @@
-@extends('layouts.app')
+@extends('admin.layouts.admin')
 
 @section('title', '| Permissions')
 
 @section('content')
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Gestion des permissions
+                    </h2>
+                    <ul class="header-dropdown m-r--5">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="{{ route('permissions.create') }}"><i class="material-icons">add</i> Nouveau </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>Permissions</th>
+                                <th>Opération</th>
+                            </tr>
+                            </thead>
 
-    <div class="col-lg-10 col-lg-offset-1">
-        <h1><i class="fa fa-key"></i>Available Permissions
+                            <tbody>
+                            @foreach ($permissions as $permission)
+                                <tr>
 
-            <a href="{{ route('users.index') }}" class="btn btn-default pull-right">Users</a>
-            <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a></h1>
-        <hr>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+                                    <td>{{ $permission->name }}</td>
 
-                <thead>
-                <tr>
-                    <th>Permissions</th>
-                    <th>Operation</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($permissions as $permission)
-                    <tr>
-                        <td>{{ $permission->name }}</td>
-                        <td>
-                            <a href="{{ URL::to('permissions/'.$permission->id.'/edit') }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+                                    <td>
+                                        <a href="{{ route('permissions.edit', [$permission->id])}}" class="btn btn-info">
+                                            <i class="material-icons">update</i>
+                                            <span>Modifier</span>
+                                        </a>
+                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#modalDelete{{$permission->id}}" data-whatever="@mdo" class="btn btn-danger">
+                                            <i class="material-icons">delete</i>
+                                            <span>Supprimer</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
 
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['permissions.destroy', $permission->id] ]) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <a href="{{ URL::to('permissions/create') }}" class="btn btn-success">Add Permission</a>
-
     </div>
-
+    @foreach ($permissions as $permission)
+        <div class="modal fade" id="modalDelete{{$permission->id}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body align-center">
+                        Êtes-vous sûr de vouloir supprimer ?
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::open(['method' => 'DELETE', 'route' => ['permissions.destroy', $permission->id] ]) !!}
+                        {!! Form::submit('Oui',['class' => 'btn btn-link  waves-effect']); !!}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Non</button>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

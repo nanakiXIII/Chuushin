@@ -70,7 +70,7 @@ class RoleController extends Controller {
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-                'Role'. $role->name.' added!');
+                'Grade '. $role->name.' ajouté!');
     }
 
     /**
@@ -129,7 +129,7 @@ class RoleController extends Controller {
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-                'Role'. $role->name.' updated!');
+                'Grade '. $role->name.' modifié!');
     }
 
     /**
@@ -145,7 +145,7 @@ class RoleController extends Controller {
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-                'Role deleted!');
+                'Grade supprimé!');
 
     }
 }

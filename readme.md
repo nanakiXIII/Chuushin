@@ -47,16 +47,17 @@
 
 ## Administration
     
-    - Ajout des série
+## Série
+    - Ajout
         - Redimension des images
         - Animes 
         - Scantrad  
         - Light novel 
         - Visual novel
-    - Modification des séries
-    - Mise en ligne des série
-    - Etat des séries
-    - Suppression des séries
+    - Modification
+    - Mise en ligne
+    - Etat
+    - Suppression
     - Sécurité
         - Création des grades (0%)
         - Mise en places des grades (0%)
@@ -64,3 +65,8 @@
         - Suppression des séries (0%)
         - Avertir nouvelle série publié (0%)
         - Changement d'état de la série (0%)
+
+##Utilisateur
+    - Gestion des grades 
+    - Gestion des permissions
+    - Gérer les utisateurs (50%) 

@@ -141,7 +141,7 @@
                     <h4 class="modal-title" id="defaultModalLabel">{{$serie->titre_original}}</h4>
                 </div>
                 <div class="modal-body align-center">
-                    Etes vous sur de vouloir supprimer <b>{{ $serie->titre_original }}</b>
+                    Êtes-vous sûr de vouloir supprimer <b>{{ $serie->titre_original }}</b> ?
                 </div>
                 <div class="modal-footer">
                     {!!Form::open(['url' => route('admin.serie.delete', [ $type, $serie]), 'method' => 'delete'])!!}
